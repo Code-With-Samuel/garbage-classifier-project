@@ -1,0 +1,8 @@
+{% extends "base.html" %}
+
+{% block content %}
+    <h2>Prediction Result:</h2>
+    <p>The uploaded garbage was classified as: <strong>{{ result }}</strong></p>
+    <p>Remaining tokens: <strong>{{ tokens }}</strong></p>
+    <a href="/">Classify another image</a>
+{% endblock %}

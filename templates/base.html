@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Garbage Classifier</title>
+    <style>
+        body { font-family: Arial; max-width: 800px; margin: auto; padding: 20px; }
+        header { background: #f0f0f0; padding: 10px; margin-bottom: 20px; }
+        footer { margin-top: 20px; font-size: 0.9em; color: #777; }
+        .status { background: #eef; padding: 10px; margin-bottom: 10px; }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>Garbage Classifier App</h1>
+        {% if user %}
+            <p>Welcome <strong>{{ user.name }}</strong> | Email: {{ user.email }} | Tokens: {{ tokens }} | <a href="/logout">Logout</a></p>
+        {% else %}
+            <p><a href="/login">Login with Google</a></p>
+        {% endif %}
+        {% if aqi %}
+            <div class="status">Current AQI: {{ aqi }}</div>
+        {% endif %}
+    </header>
+
+    {% block content %}{% endblock %}
+
+    <footer><p>&copy; 2025 Garbage Classifier</p></footer>
+</body>
+</html>
