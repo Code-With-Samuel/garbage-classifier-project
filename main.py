@@ -8,6 +8,7 @@ from starlette.config import Config
 from starlette.middleware.sessions import SessionMiddleware
 
 import tensorflow as tf
+import keras
 import numpy as np
 from PIL import Image
 
@@ -21,7 +22,9 @@ app.mount("/static", StaticFiles(directory="static"), name="static")
 templates = Jinja2Templates(directory="templates")
 
 config = Config('.env')
-oauth = OAuth(config)
+oauth = OAuth()
+
+
 oauth.register(
     name='google',
     client_id=config('GOOGLE_CLIENT_ID'),
@@ -29,9 +32,10 @@ oauth.register(
     server_metadata_url='https://accounts.google.com/.well-known/openid-configuration',
     client_kwargs={'scope': 'openid email profile'}
 )
+
 app.add_middleware(SessionMiddleware, secret_key=config('SECRET_KEY'))
 
-model = tf.keras.models.load_model("model/garbage_classifier.h5")
+model = keras.models.load_model("model/garbage_classifier.h5")
 class_names = [
     'battery',
     'biological',
