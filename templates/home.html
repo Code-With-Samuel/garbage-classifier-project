@@ -1,13 +1,14 @@
 {% extends "base.html" %}
 
 {% block content %}
-    <h2>Upload an image for classification:</h2>
+    <h2>Upload an image for classification</h2>
+
     {% if user %}
         <form action="/predict" method="post" enctype="multipart/form-data">
-            <input type="file" name="file" required>
-            <button type="submit">Predict</button>
+            <input type="file" name="file" accept="image/*" required>
+            <button type="submit">Classify Image</button>
         </form>
     {% else %}
-        <p>Please <a href="/login">log in</a> to upload an image.</p>
+        <p>You must <a href="/login">log in</a> to use the classifier.</p>
     {% endif %}
 {% endblock %}
